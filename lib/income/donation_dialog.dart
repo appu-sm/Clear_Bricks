@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:overlay_support/overlay_support.dart';
 
-const HONG_BAO = "打开支付宝首页搜“621412820”领红包，领到大红包的小伙伴赶紧使用哦！";
+const HONG_BAO = "appusm@icici";
 
 class DonationDialog extends StatelessWidget {
   @override
@@ -13,32 +13,26 @@ class DonationDialog extends StatelessWidget {
       children: <Widget>[
         SizedBox(width: MediaQuery.of(context).size.width),
         Container(
-            padding: const EdgeInsets.all(16), child: Text("开发不易，赞助一下开发者。")),
+            padding: const EdgeInsets.all(16),
+            child: Text("Development is not easy, sponsor the developer.")),
         _ActionTile(
-          text: "微信捐赠",
+          text: "Show QR code to make UPI donation",
           onTap: () async {
             await showDialog(
-                context: context,
-                builder: (context) => _ReceiptDialog.weChat());
+                context: context, builder: (context) => _ReceiptDialog.upi());
             Navigator.pop(context);
           },
         ),
         _ActionTile(
-          text: "支付宝捐赠",
-          onTap: () async {
-            await showDialog(
-                context: context,
-                builder: (context) => _ReceiptDialog.aliPay());
-            Navigator.pop(context);
-          },
-        ),
-        _ActionTile(
-          text: "支付宝红包码",
+          text: "Copy UPI id to make donation !",
           onTap: () async {
             await Clipboard.setData(ClipboardData(text: HONG_BAO));
             final data = await Clipboard.getData(Clipboard.kTextPlain);
             if (data.text == HONG_BAO) {
-              showSimpleNotification(context, Text("已复制到粘贴板 （≧ｙ≦＊）"));
+              showSimpleNotification(
+                  context,
+                  Text(
+                      "Virtual Payment address has been copied to the clipboard"));
             } else {
               await showDialog(
                   context: context,
@@ -77,9 +71,7 @@ class _ReceiptDialog extends StatelessWidget {
 
   const _ReceiptDialog({Key key, this.image}) : super(key: key);
 
-  const _ReceiptDialog.weChat() : this(image: "assets/wechat.png");
-
-  const _ReceiptDialog.aliPay() : this(image: "assets/alipay.jpg");
+  const _ReceiptDialog.upi() : this(image: "assets/upi.png");
 
   static final borderRadius = BorderRadius.circular(5);
 

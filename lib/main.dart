@@ -35,7 +35,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'tetris',
-      localizationsDelegates: [S.delegate, GlobalMaterialLocalizations.delegate, GlobalWidgetsLocalizations.delegate],
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
       navigatorObservers: [routeObserver],
       supportedLocales: S.delegate.supportedLocales,
       theme: ThemeData(
@@ -50,7 +54,7 @@ class MyApp extends StatelessWidget {
 
 const SCREEN_BORDER_WIDTH = 3.0;
 
-const BACKGROUND_COLOR = const Color(0xffefcc19);
+const BACKGROUND_COLOR = Color(0xffaeea00);
 
 class _HomePage extends StatelessWidget {
   @override
