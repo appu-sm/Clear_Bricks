@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:tetris/gamer/gamer.dart';
-import 'package:tetris/generated/i18n.dart';
+import 'package:tetrix/gamer/gamer.dart';
+import 'package:tetrix/generated/i18n.dart';
 
 class GameController extends StatelessWidget {
   @override
@@ -314,7 +314,7 @@ class _ButtonState extends State<_Button> {
   Widget build(BuildContext context) {
     return Material(
       color: _color,
-      elevation: 2,
+      elevation: 5,
       shape: CircleBorder(),
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,

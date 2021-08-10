@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:tetris/generated/i18n.dart';
-import 'package:tetris/income/donation_dialog.dart';
-import 'package:tetris/main.dart';
-import 'package:tetris/panel/controller.dart';
-import 'package:tetris/panel/screen.dart';
+import 'package:tetrix/generated/i18n.dart';
+import 'package:tetrix/income/donation_dialog.dart';
+import 'package:tetrix/main.dart';
+import 'package:tetrix/panel/controller.dart';
+import 'package:tetrix/panel/screen.dart';
 
 part 'page_land.dart';
 
@@ -11,7 +11,7 @@ class PagePortrait extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final screenW = size.width * 0.8;
+    final screenW = size.width * 0.9;
 
     return SizedBox.expand(
       child: Container(

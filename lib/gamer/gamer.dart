@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:tetris/gamer/block.dart';
-import 'package:tetris/main.dart';
-import 'package:tetris/material/audios.dart';
+import 'package:tetrix/gamer/block.dart';
+import 'package:tetrix/main.dart';
+import 'package:tetrix/material/audios.dart';
 
 ///the height of game pad
 const GAME_PAD_MATRIX_H = 20;
@@ -13,14 +13,14 @@ const GAME_PAD_MATRIX_W = 10;
 
 ///state of [GameControl]
 enum GameStates {
-  ///随时可以开启一把惊险而又刺激的俄罗斯方块
+  ///You can open a thrilling and exciting Tetris at any time
   none,
 
-  ///游戏暂停中，方块的下落将会停止
+  ///While the game is paused, the falling of the cube will stop
   paused,
 
-  ///游戏正在进行中，方块正在下落
-  ///按键可交互
+  ///The game is in progress and the cube is falling
+  ///Buttons can be interactive
   running,
 
   ///游戏正在重置

@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:tetris/gamer/block.dart';
-import 'package:tetris/gamer/gamer.dart';
-import 'package:tetris/generated/i18n.dart';
-import 'package:tetris/material/briks.dart';
-import 'package:tetris/material/images.dart';
+import 'package:tetrix/gamer/block.dart';
+import 'package:tetrix/gamer/gamer.dart';
+import 'package:tetrix/generated/i18n.dart';
+import 'package:tetrix/material/briks.dart';
+import 'package:tetrix/material/images.dart';
 
 class StatusPanel extends StatelessWidget {
   @override
@@ -13,7 +13,7 @@ class StatusPanel extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(8),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           Text(S.of(context).points,
               style: TextStyle(fontWeight: FontWeight.bold)),
@@ -55,6 +55,7 @@ class _NextBlock extends StatelessWidget {
     return Column(
       children: data.map((list) {
         return Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: list.map((b) {
             return b == 1 ? const Brik.normal() : const Brik.empty();
           }).toList(),

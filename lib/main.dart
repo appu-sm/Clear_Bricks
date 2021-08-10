@@ -1,10 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:tetris/gamer/gamer.dart';
-import 'package:tetris/generated/i18n.dart';
-import 'package:tetris/material/audios.dart';
-import 'package:tetris/panel/page_portrait.dart';
+import 'package:tetrix/gamer/gamer.dart';
+import 'package:tetrix/generated/i18n.dart';
+import 'package:tetrix/material/audios.dart';
+import 'package:tetrix/panel/page_portrait.dart';
 
 import 'gamer/keyboard.dart';
 
