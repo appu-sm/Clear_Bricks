@@ -1,4 +1,4 @@
-package tech.soit.flutter_tetris
+package `as`.infotech.Tetrix
 
 import io.flutter.embedding.android.FlutterActivity
 

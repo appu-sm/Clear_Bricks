@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="tech.soit.flutter_tetris">
+    package="as.infotech.Tetrix">
    <application
-        android:label="flutter_tetris"
+        android:label="Tetrix"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
