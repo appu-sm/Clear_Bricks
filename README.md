@@ -1,6 +1,6 @@
 #### 
 
-[README](https://github.com/appu-sm/Tetrix/blob/master/README.md)
+[README](https://github.com/appu-sm/Clear_Bricks/blob/master/README.md)
 
 
 a tetris game powered by flutter.
@@ -13,7 +13,7 @@ a tetris game powered by flutter.
 
   run in Command Line：`flutter run --profile`
 
-* download Apk file at page [releases](https://github.com/appu-sm/Tetrix/releases)（for Android only)
+* download Apk file at page [releases](https://github.com/appu-sm/Clear_Bricks/releases)（for Android only)
 
 ## Preview
 

@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:tetrix/gamer/block.dart';
-import 'package:tetrix/gamer/gamer.dart';
-import 'package:tetrix/generated/i18n.dart';
-import 'package:tetrix/material/briks.dart';
-import 'package:tetrix/material/images.dart';
+import 'package:clear_bricks/gamer/block.dart';
+import 'package:clear_bricks/gamer/gamer.dart';
+import 'package:clear_bricks/generated/i18n.dart';
+import 'package:clear_bricks/material/briks.dart';
+import 'package:clear_bricks/material/images.dart';
 
 class StatusPanel extends StatelessWidget {
   @override
@@ -105,7 +105,7 @@ class _GameStatusState extends State<_GameStatus> {
     return Row(
       children: <Widget>[
         IconSound(enable: GameState.of(context).muted),
-        SizedBox(width: 4),
+        SizedBox(width: 2),
         IconPause(enable: GameState.of(context).states == GameStates.paused),
         Spacer(),
         Number(number: _hour, length: 2, padWithZero: true),

@@ -92,10 +92,10 @@ BEGIN
             VALUE "CompanyName", "tech.soit" "\0"
             VALUE "FileDescription", "A new Flutter project." "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "Tetrix" "\0"
+            VALUE "InternalName", "ClearBricks" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2020 tech.soit. All rights reserved." "\0"
-            VALUE "OriginalFilename", "Tetrix.exe" "\0"
-            VALUE "ProductName", "Tetrix" "\0"
+            VALUE "OriginalFilename", "ClearBricks.exe" "\0"
+            VALUE "ProductName", "ClearBricks" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

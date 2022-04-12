@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(Tetrix LANGUAGES CXX)
+project(ClearBricks LANGUAGES CXX)
 
-set(BINARY_NAME "Tetrix")
+set(BINARY_NAME "ClearBricks")
 
 cmake_policy(SET CMP0063 NEW)
 

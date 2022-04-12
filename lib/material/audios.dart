@@ -45,6 +45,7 @@ class SoundState extends State<Sound> {
   @override
   void initState() {
     super.initState();
+    // ignore: deprecated_member_use
     _pool = Soundpool(streamType: StreamType.music, maxStreams: 4);
     _soundIds = Map();
     for (var value in _SOUNDS) {

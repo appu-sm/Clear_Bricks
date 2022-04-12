@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:tetrix/gamer/gamer.dart';
-import 'package:tetrix/generated/i18n.dart';
+import 'package:clear_bricks/gamer/gamer.dart';
+import 'package:clear_bricks/generated/i18n.dart';
 
 class GameController extends StatelessWidget {
   @override
