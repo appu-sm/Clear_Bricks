@@ -22,10 +22,10 @@ class S implements WidgetsLocalizations {
   String get cleans => "Cleans";
   String get level => "Level";
   String get next => "Next";
-  String get pause_resume => "PAUSE/RESUME";
-  String get points => "Points";
-  String get reset => "RESET";
-  String get sounds => "SOUNDS";
+  String get pause_resume => "Pause/Resume";
+  String get points => "Score";
+  String get reset => "Reset";
+  String get sounds => "Sound";
 }
 
 class $en extends S {

@@ -25,7 +25,8 @@ class _PageLandState extends State<PageLand> {
       // "ca-app-pub-7184380873624694/9250388614", //App ID
       request: AdRequest(),
       size: AdSize(
-          height: 50, width: MediaQuery.of(context).size.width.truncate()),
+          height: (MediaQuery.of(context).size.height / 3).truncate(),
+          width: (MediaQuery.of(context).size.width / 2).truncate()),
       listener: BannerAdListener(
         onAdFailedToLoad: (Ad ad, LoadAdError error) {
           ad.dispose();
@@ -102,7 +103,7 @@ class _PageLandState extends State<PageLand> {
                     ),
                     Spacer(),
                     DirectionController(),
-                    SizedBox(height: 50),
+                    SizedBox(height: 5),
                   ],
                 ),
               ),

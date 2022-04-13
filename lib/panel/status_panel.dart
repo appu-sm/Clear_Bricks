@@ -16,22 +16,26 @@ class StatusPanel extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
           Text(S.of(context).points,
-              style: TextStyle(fontWeight: FontWeight.bold)),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
           SizedBox(height: 4),
           Number(number: GameState.of(context).points),
           SizedBox(height: 10),
           Text(S.of(context).cleans,
-              style: TextStyle(fontWeight: FontWeight.bold)),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
           SizedBox(height: 4),
           Number(number: GameState.of(context).cleared),
           SizedBox(height: 10),
           Text(S.of(context).level,
-              style: TextStyle(fontWeight: FontWeight.bold)),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
           SizedBox(height: 4),
           Number(number: GameState.of(context).level),
           SizedBox(height: 10),
           Text(S.of(context).next,
-              style: TextStyle(fontWeight: FontWeight.bold)),
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
           SizedBox(height: 4),
           _NextBlock(),
           Spacer(),

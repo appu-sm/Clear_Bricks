@@ -52,7 +52,8 @@ class _PagePortraitState extends State<PagePortrait> {
       //"ca-app-pub-7184380873624694/9250388614", //App ID
       request: AdRequest(),
       size: AdSize(
-          height: 70, width: MediaQuery.of(context).size.width.truncate()),
+          height: (MediaQuery.of(context).size.width / 6).truncate(),
+          width: MediaQuery.of(context).size.width.truncate()),
       listener: BannerAdListener(
         onAdFailedToLoad: (Ad ad, LoadAdError error) {
           ad.dispose();
@@ -85,7 +86,7 @@ class _PagePortraitState extends State<PagePortrait> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final screenW = size.width * 0.9;
+    final screenW = size.width * 0.95;
 
     return SizedBox.expand(
       child: Container(
@@ -104,7 +105,7 @@ class _PagePortraitState extends State<PagePortrait> {
                   : Spacer(),
               Spacer(),
               _ScreenDecoration(child: Screen(width: screenW)),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               GameController(),
             ],
           ),

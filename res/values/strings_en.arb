@@ -1,8 +1,8 @@
 {
-  "pause_resume": "PAUSE/RESUME",
-  "reset": "RESET",
-  "sounds": "SOUNDS",
-  "points": "Points",
+  "pause_resume": "Pause/Resume",
+  "reset": "Rest",
+  "sounds": "Sound",
+  "points": "Score",
   "cleans": "Cleans",
   "level": "Level",
   "next": "Next",

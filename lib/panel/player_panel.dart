@@ -71,7 +71,7 @@ class _GameUninitialized extends StatelessWidget {
             SizedBox(height: 16),
             Text(
               "ClearBricks",
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20, color: Colors.black),
             ),
           ],
         ),
