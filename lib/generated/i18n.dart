@@ -24,6 +24,7 @@ class S implements WidgetsLocalizations {
   String get next => "Next";
   String get pause_resume => "Pause/Resume";
   String get points => "Score";
+  String get highscore => "Highest Score";
   String get reset => "Reset";
   String get sounds => "Sound";
 }

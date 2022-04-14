@@ -1,28 +1,26 @@
-#### 
-
-[README](https://github.com/appu-sm/Clear_Bricks/blob/master/README.md)
-
-
-a tetris game powered by flutter.
-
+##### _Classic brick game powered by flutter_
+Clear Bricks is a popular and addictive puzzle game! A nostalgic handheld game of 90s Kids recreated, a perfect time pass which also improves your logical skill. It supports wallpaper based theme colour on Android 12 and above, so you get different colour each time when you change wallpaper.
 ## Getting Started
+Play Rules:
+- Classic brick game without time limits.
+- Place the bricks in a reasonable position.
+- Create full lines on the grid horizontally to clear bricks.
+- The more bricks you clear, the more you score.
+- Bricks can be rotated.
+- Speed increases on each new level
 
-* Compile by yourself
+Lets break the buttons!!! Download from [Play Store](https://play.google.com/store/apps/dev?id=7098510071783404976)
+### Preview
 
-  install [Flutter](https://flutter.io/docs/get-started/install)
-
-  run in Command Line：`flutter run --profile`
-
-* download Apk file at page [releases](https://github.com/appu-sm/Clear_Bricks/releases)（for Android only)
-
-## Preview
-
-![preview](./_preview/game_gif.gif)
+![preview](./_preview/portarit.png)
 
 support landscape
 
-![land](./_preview/screen_land.jpg)
+![land](./_preview/landscape.png)
 
-## Other
 
-MIT with 996 License
+#### Build
+
+```
+flutter build appbundle --obfuscate --split-debug-info --release
+```

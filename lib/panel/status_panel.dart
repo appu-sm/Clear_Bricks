@@ -15,6 +15,12 @@ class StatusPanel extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
+          Text(S.of(context).highscore,
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+          SizedBox(height: 4),
+          Number(number: GameState.of(context).highscore),
+          SizedBox(height: 4),
           Text(S.of(context).points,
               style:
                   TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),

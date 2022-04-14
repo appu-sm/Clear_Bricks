@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:clear_bricks/gamer/block.dart';
 import 'package:clear_bricks/main.dart';
 import 'package:clear_bricks/material/audios.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 ///the height of game pad
 const GAME_PAD_MATRIX_H = 20;
@@ -122,6 +123,8 @@ class GameControl extends State<Game> with RouteAware {
   Block _current;
 
   Block _next = Block.getRandom();
+
+  int _highscore = 0;
 
   GameStates _states = GameStates.none;
 
@@ -245,10 +248,12 @@ class GameControl extends State<Game> with RouteAware {
         _data.setRange(1, line + 1, _data);
         _data[0] = List.filled(GAME_PAD_MATRIX_W, 0);
       });
-      debugPrint("clear lines : $clearLines");
 
       _cleared += clearLines.length;
       _points += clearLines.length * _level * 5;
+
+      // Record highScore
+      saveHighScore(_points);
 
       //up level possible when cleared
       int level = (_cleared ~/ 50) + _LEVEL_MIN;
@@ -268,6 +273,7 @@ class GameControl extends State<Game> with RouteAware {
 
     //检查游戏是否结束,即检查第一行是否有元素为1
     if (_data[0].contains(1)) {
+      saveHighScore(_points);
       reset();
       return;
     } else {
@@ -363,9 +369,24 @@ class GameControl extends State<Game> with RouteAware {
     if (_states == GameStates.running && _autoFallTimer?.isActive == false) {
       return;
     }
+    getHighscore();
     _states = GameStates.running;
     _autoFall(true);
     setState(() {});
+  }
+
+  getHighscore() async {
+    SharedPreferences savedData = await SharedPreferences.getInstance();
+    _highscore = savedData.getInt("highscore") ?? 0;
+  }
+
+  Future<void> saveHighScore(currentScore) async {
+    if (currentScore > _highscore) {
+      _highscore = currentScore;
+      SharedPreferences savedData = await SharedPreferences.getInstance();
+      savedData.setInt("highscore", _highscore);
+      setState(() {});
+    }
   }
 
   @override
@@ -383,9 +404,8 @@ class GameControl extends State<Game> with RouteAware {
         mixed[i][j] = value;
       }
     }
-    debugPrint("game states : $_states");
-    return GameState(
-        mixed, _states, _level, _sound.mute, _points, _cleared, _next,
+    return GameState(mixed, _states, _level, _sound.mute, _points, _cleared,
+        _next, _highscore,
         child: widget.child);
   }
 
@@ -398,7 +418,7 @@ class GameControl extends State<Game> with RouteAware {
 
 class GameState extends InheritedWidget {
   GameState(this.data, this.states, this.level, this.muted, this.points,
-      this.cleared, this.next,
+      this.cleared, this.next, this.highscore,
       {Key key, this.child})
       : super(key: key, child: child);
 
@@ -421,6 +441,8 @@ class GameState extends InheritedWidget {
   final int cleared;
 
   final Block next;
+
+  final int highscore;
 
   static GameState of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<GameState>();
