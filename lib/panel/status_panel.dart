@@ -117,10 +117,10 @@ class _GameStatusState extends State<_GameStatus> {
         IconSound(enable: GameState.of(context).muted),
         SizedBox(width: 2),
         IconPause(enable: GameState.of(context).states == GameStates.paused),
-        Spacer(),
-        Number(number: _hour, length: 2, padWithZero: true),
-        IconColon(enable: _colonEnable),
-        Number(number: _minute, length: 2, padWithZero: true),
+        //  Spacer(),
+        //  Number(number: _hour, length: 2, padWithZero: true),
+        //  IconColon(enable: _colonEnable),
+        //  Number(number: _minute, length: 2, padWithZero: true),
       ],
     );
   }

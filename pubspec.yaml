@@ -1,7 +1,7 @@
 name: clear_bricks
 description: Old style brick game.
 
-version: 1.1.0+3
+version: 1.2.0+4
 
 environment:
   sdk: ">=2.2.2 <3.0.0"

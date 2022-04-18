@@ -88,26 +88,6 @@ class MyAppState extends State<MyApp> {
         ),
       );
     });
-
-    /*
-    return MaterialApp(
-      title: 'clearbricks',
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      ],
-      navigatorObservers: [routeObserver],
-      supportedLocales: S.delegate.supportedLocales,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        body: Sound(child: Game(child: KeyboardController(child: _HomePage()))),
-      ),
-    );
-
-    */
   }
 }
 
@@ -150,8 +130,7 @@ class _HomePage extends StatelessWidget {
         barrierDismissible: false,
         builder: (context) => AlertDialog(
               title: Text("Network Required"),
-              content: Text(
-                  "Please support the developer by enabling the network connection"),
+              content: Text("Network connection is required to play the game"),
               actions: [
                 TextButton(
                     onPressed: () => _checkWifi(context),

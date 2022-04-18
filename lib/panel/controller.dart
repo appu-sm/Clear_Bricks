@@ -22,7 +22,7 @@ class GameController extends StatelessWidget {
 
 const Size _DIRECTION_BUTTON_SIZE = const Size(48, 48);
 
-const Size _SYSTEM_BUTTON_SIZE = const Size(28, 28);
+const Size _SYSTEM_BUTTON_SIZE = const Size(20, 20);
 
 const double _DIRECTION_SPACE = 22;
 
@@ -105,7 +105,8 @@ class DirectionController extends StatelessWidget {
                   Transform.rotate(
                       angle: math.pi / 4.0,
                       child: _ButtonDirection(
-                          color: Theme.of(context).colorScheme.primaryContainer,
+                          color:
+                              Theme.of(context).colorScheme.secondaryContainer,
                           enableLongPress: false,
                           size: _DIRECTION_BUTTON_SIZE,
                           onTap: () {
@@ -115,7 +116,8 @@ class DirectionController extends StatelessWidget {
                   Transform.rotate(
                       angle: math.pi / 1.34,
                       child: _ButtonDirection(
-                          color: Theme.of(context).colorScheme.primaryContainer,
+                          color:
+                              Theme.of(context).colorScheme.secondaryContainer,
                           size: _DIRECTION_BUTTON_SIZE,
                           onTap: () {
                             Game.of(context).right();
@@ -129,7 +131,8 @@ class DirectionController extends StatelessWidget {
                   Transform.rotate(
                       angle: math.pi / 0.572,
                       child: _ButtonDirection(
-                          color: Theme.of(context).colorScheme.primaryContainer,
+                          color:
+                              Theme.of(context).colorScheme.secondaryContainer,
                           size: _DIRECTION_BUTTON_SIZE,
                           onTap: () {
                             Game.of(context).left();
@@ -138,7 +141,7 @@ class DirectionController extends StatelessWidget {
                   Transform.rotate(
                       angle: math.pi / 0.1905,
                       child: _ButtonDirection(
-                        color: Theme.of(context).colorScheme.primaryContainer,
+                        color: Theme.of(context).colorScheme.secondaryContainer,
                         size: _DIRECTION_BUTTON_SIZE,
                         onTap: () {
                           Game.of(context).down();
@@ -174,7 +177,9 @@ class SystemButtonGroup extends StatelessWidget {
               }),
         ),
         _Description(
-          text: S.of(context).pause_resume,
+          text: (GameState.of(context).states == GameStates.paused)
+              ? S.of(context).resume
+              : S.of(context).pause,
           child: _Button(
               size: _SYSTEM_BUTTON_SIZE,
               color: _systemButtonColor,
