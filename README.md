@@ -11,12 +11,10 @@ Play Rules:
 
 Lets break the buttons!!! Download from [Play Store](https://play.google.com/store/apps/dev?id=7098510071783404976)
 ### Preview
+<img src="./_preview/portarit.png" alt="drawing" style="height:600px;"/>
 
-![preview](./_preview/portarit.png)
 
-support landscape
-
-![land](./_preview/landscape.png)
+<img src="./_preview/landscape.png" alt="drawing" style="width:600px;"/>
 
 
 #### Build
