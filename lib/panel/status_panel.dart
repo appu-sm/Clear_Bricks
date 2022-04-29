@@ -113,6 +113,7 @@ class _GameStatusState extends State<_GameStatus> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
         IconSound(enable: GameState.of(context).muted),
         SizedBox(width: 2),

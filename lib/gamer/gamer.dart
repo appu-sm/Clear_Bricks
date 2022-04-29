@@ -84,6 +84,17 @@ class GameControl extends State<Game> with RouteAware {
     }
   }
 
+  int _highscore = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    SharedPreferences.getInstance().then((SharedPreferences sp) {
+      if (sp.getInt('highscore') != null) _highscore = sp.getInt('highscore');
+      setState(() {});
+    });
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -123,8 +134,6 @@ class GameControl extends State<Game> with RouteAware {
   Block _current;
 
   Block _next = Block.getRandom();
-
-  int _highscore = 0;
 
   GameStates _states = GameStates.none;
 
@@ -369,15 +378,9 @@ class GameControl extends State<Game> with RouteAware {
     if (_states == GameStates.running && _autoFallTimer?.isActive == false) {
       return;
     }
-    getHighscore();
     _states = GameStates.running;
     _autoFall(true);
     setState(() {});
-  }
-
-  getHighscore() async {
-    SharedPreferences savedData = await SharedPreferences.getInstance();
-    _highscore = savedData.getInt("highscore") ?? 0;
   }
 
   Future<void> saveHighScore(currentScore) async {
