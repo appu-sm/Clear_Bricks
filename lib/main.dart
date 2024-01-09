@@ -10,27 +10,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'gamer/keyboard.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:dynamic_color/dynamic_color.dart';
-import 'package:dynamic_colorscheme/dynamic_colorscheme.dart';
-import 'package:material_color_utilities/material_color_utilities.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  _disableDebugPrint();
   MobileAds.instance.initialize();
   runApp(MyApp());
-}
-
-void _disableDebugPrint() {
-  bool debug = false;
-  assert(() {
-    debug = true;
-    return true;
-  }());
-  if (!debug) {
-    debugPrint = (String message, {int wrapWidth}) {
-      //disable log print when not in debug mode
-    };
-  }
 }
 
 final RouteObserver<ModalRoute> routeObserver = RouteObserver<ModalRoute>();
@@ -54,18 +38,9 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    ColorScheme m3Light;
-    ColorScheme m3Dark;
-    ColorScheme light = ColorScheme.light(
-        primary: Color(0xffaeea00), secondary: Color(0xFF987f0f));
-    ColorScheme dark = ColorScheme.dark(
-        primary: Color(0xffaeea00), secondary: Color(0xFF987f0f));
-    return DynamicColorBuilder(builder: (CorePalette palette) {
-      if (palette != null) {
-        m3Light = DynamicColorScheme.generate(palette, dark: false);
-        m3Dark = DynamicColorScheme.generate(palette, dark: true);
-      }
-
+    ColorScheme light = ColorScheme.light(primary: Color(0xffaeea00), secondary: Color(0xFF987f0f));
+    ColorScheme dark = ColorScheme.dark(primary: Color(0xffaeea00), secondary: Color(0xFF987f0f));
+    return DynamicColorBuilder(builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
       return MaterialApp(
         title: 'clearbricks',
         localizationsDelegates: [
@@ -75,16 +50,11 @@ class MyAppState extends State<MyApp> {
         ],
         navigatorObservers: [routeObserver],
         supportedLocales: S.delegate.supportedLocales,
-        theme: m3Light == null
-            ? ThemeData(colorScheme: light)
-            : ThemeData(colorScheme: m3Light),
-        darkTheme: m3Dark == null
-            ? ThemeData(colorScheme: dark)
-            : ThemeData(colorScheme: m3Dark),
+        theme: lightDynamic == null ? ThemeData(colorScheme: light) : ThemeData(colorScheme: lightDynamic),
+        darkTheme: darkDynamic == null ? ThemeData(colorScheme: dark) : ThemeData(colorScheme: darkDynamic),
         debugShowCheckedModeBanner: false,
         home: Scaffold(
-          body:
-              Sound(child: Game(child: KeyboardController(child: _HomePage()))),
+          body: Sound(child: Game(child: KeyboardController(child: _HomePage()))),
         ),
       );
     });
@@ -108,7 +78,7 @@ class _HomePage extends StatelessWidget {
     bool connectedToMobile = (connectivityResult == ConnectivityResult.mobile);
 
     SharedPreferences data = await SharedPreferences.getInstance();
-    bool platformMessage = data.getBool("networkAlert");
+    bool? platformMessage = data.getBool("networkAlert");
 
     if (!connectedToWifi && !connectedToMobile) {
       if (platformMessage == null || !platformMessage) {
@@ -132,12 +102,9 @@ class _HomePage extends StatelessWidget {
               title: Text("Network Required"),
               content: Text("Network connection is required to play the game"),
               actions: [
+                TextButton(onPressed: () => _checkWifi(context), child: Text("Refresh")),
                 TextButton(
-                    onPressed: () => _checkWifi(context),
-                    child: Text("Refresh")),
-                TextButton(
-                    onPressed: () => SystemChannels.platform
-                        .invokeMethod('SystemNavigator.pop'),
+                    onPressed: () => SystemChannels.platform.invokeMethod('SystemNavigator.pop'),
                     child: Text("Exit"))
               ],
             ));

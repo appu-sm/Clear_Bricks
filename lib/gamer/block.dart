@@ -75,7 +75,7 @@ enum BlockType { I, L, J, Z, S, O, T }
 
 class Block {
   final BlockType type;
-  final List<List<int>> shape;
+  final List shape;
   final List<int> xy;
   final int rotateIndex;
 
@@ -94,30 +94,24 @@ class Block {
   }
 
   Block rotate() {
-    List<List<int>> result =
-        List.filled(shape[0].length, null, growable: false);
+    List result = List.filled(shape[0].length, null, growable: false);
     for (int row = 0; row < shape.length; row++) {
       for (int col = 0; col < shape[row].length; col++) {
+        // ignore: unnecessary_null_comparison
         if (result[col] == null) {
           result[col] = List.filled(shape.length, 0, growable: false);
         }
         result[col][row] = shape[shape.length - 1 - row][col];
       }
     }
-    final nextXy = [
-      this.xy[0] + ORIGIN[type][rotateIndex][0],
-      this.xy[1] + ORIGIN[type][rotateIndex][1]
-    ];
-    final nextRotateIndex =
-        rotateIndex + 1 >= ORIGIN[this.type].length ? 0 : rotateIndex + 1;
+    final nextXy = [this.xy[0] + ORIGIN[type]![rotateIndex][0], this.xy[1] + ORIGIN[type]![rotateIndex][1]];
+    final nextRotateIndex = rotateIndex + 1 >= ORIGIN[this.type]!.length ? 0 : rotateIndex + 1;
 
     return Block(type, result, nextXy, nextRotateIndex);
   }
 
   bool isValidInMatrix(List<List<int>> matrix) {
-    if (xy[1] + shape.length > GAME_PAD_MATRIX_H ||
-        xy[0] < 0 ||
-        xy[0] + shape[0].length > GAME_PAD_MATRIX_W) {
+    if (xy[1] + shape.length > GAME_PAD_MATRIX_H || xy[0] < 0 || xy[0] + shape[0].length > GAME_PAD_MATRIX_W) {
       return false;
     }
     for (var i = 0; i < matrix.length; i++) {
@@ -133,7 +127,7 @@ class Block {
 
   ///return null if do not show at [x][y]
   ///return 1 if show at [x,y]
-  int get(int x, int y) {
+  int? get(int x, int y) {
     x -= xy[0];
     y -= xy[1];
     if (x < 0 || x >= shape[0].length || y < 0 || y >= shape.length) {
@@ -144,7 +138,7 @@ class Block {
 
   static Block fromType(BlockType type) {
     final shape = BLOCK_SHAPES[type];
-    return Block(type, shape, START_XY[type], 0);
+    return Block(type, shape!, START_XY[type]!, 0);
   }
 
   static Block getRandom() {

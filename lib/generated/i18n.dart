@@ -11,10 +11,9 @@ import 'package:flutter/material.dart';
 class S implements WidgetsLocalizations {
   const S();
 
-  static const GeneratedLocalizationsDelegate delegate =
-      GeneratedLocalizationsDelegate();
+  static const GeneratedLocalizationsDelegate delegate = GeneratedLocalizationsDelegate();
 
-  static S of(BuildContext context) => Localizations.of<S>(context, S);
+  static S? of(BuildContext context) => Localizations.of<S>(context, S);
 
   @override
   TextDirection get textDirection => TextDirection.ltr;
@@ -28,10 +27,58 @@ class S implements WidgetsLocalizations {
   String get highscore => "Highest Score";
   String get reset => "Reset";
   String get sounds => "Sound";
+
+  @override
+  // TODO: implement reorderItemDown
+  String get reorderItemDown => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemLeft
+  String get reorderItemLeft => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemRight
+  String get reorderItemRight => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemToEnd
+  String get reorderItemToEnd => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemToStart
+  String get reorderItemToStart => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemUp
+  String get reorderItemUp => throw UnimplementedError();
 }
 
 class $en extends S {
   const $en();
+
+  @override
+  // TODO: implement reorderItemDown
+  String get reorderItemDown => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemLeft
+  String get reorderItemLeft => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemRight
+  String get reorderItemRight => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemToEnd
+  String get reorderItemToEnd => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemToStart
+  String get reorderItemToStart => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemUp
+  String get reorderItemUp => throw UnimplementedError();
 }
 
 class $zh_CN extends S {
@@ -56,6 +103,30 @@ class $zh_CN extends S {
   String get cleans => "消除";
   @override
   String get points => "分数";
+
+  @override
+  // TODO: implement reorderItemDown
+  String get reorderItemDown => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemLeft
+  String get reorderItemLeft => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemRight
+  String get reorderItemRight => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemToEnd
+  String get reorderItemToEnd => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemToStart
+  String get reorderItemToStart => throw UnimplementedError();
+
+  @override
+  // TODO: implement reorderItemUp
+  String get reorderItemUp => throw UnimplementedError();
 }
 
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
@@ -68,25 +139,25 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
     ];
   }
 
-  LocaleListResolutionCallback listResolution({Locale fallback}) {
+  Locale Function(List<Locale> locales, Iterable<Locale> supported) listResolution({Locale? fallback}) {
     return (List<Locale> locales, Iterable<Locale> supported) {
-      if (locales == null || locales.isEmpty) {
+      if (locales.isEmpty) {
         return fallback ?? supported.first;
       } else {
-        return _resolve(locales.first, fallback, supported);
+        return _resolve(locales.first, fallback!, supported);
       }
     };
   }
 
-  LocaleResolutionCallback resolution({Locale fallback}) {
+  Locale Function(Locale locale, Iterable<Locale> supported) resolution({Locale? fallback}) {
     return (Locale locale, Iterable<Locale> supported) {
-      return _resolve(locale, fallback, supported);
+      return _resolve(locale, fallback!, supported);
     };
   }
 
   Locale _resolve(Locale locale, Locale fallback, Iterable<Locale> supported) {
-    if (locale == null || !isSupported(locale)) {
-      return fallback ?? supported.first;
+    if (!isSupported(locale)) {
+      return fallback;
     }
 
     final Locale languageLocale = Locale(locale.languageCode, "");
@@ -95,37 +166,36 @@ class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {
     } else if (supported.contains(languageLocale)) {
       return languageLocale;
     } else {
-      final Locale fallbackLocale = fallback ?? supported.first;
+      final Locale fallbackLocale = fallback;
       return fallbackLocale;
     }
   }
 
   @override
   Future<S> load(Locale locale) {
-    final String lang = getLang(locale);
-    if (lang != null) {
-      switch (lang) {
-        case "en":
-          return SynchronousFuture<S>(const $en());
-        case "zh_CN":
-          return SynchronousFuture<S>(const $zh_CN());
-        default:
-        // NO-OP.
-      }
+    final String? lang = getLang(locale);
+    switch (lang) {
+      case "en":
+        return SynchronousFuture<S>(const $en());
+      case "zh_CN":
+        return SynchronousFuture<S>(const $zh_CN());
+      default:
+      // NO-OP.
     }
+
     return SynchronousFuture<S>(const S());
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      locale != null && supportedLocales.contains(locale);
+  bool isSupported(Locale locale) => supportedLocales.contains(locale);
 
   @override
   bool shouldReload(GeneratedLocalizationsDelegate old) => false;
 }
 
-String getLang(Locale l) => l == null
+// ignore: unnecessary_null_comparison
+String? getLang(Locale l) => l == null
     ? null
-    : l.countryCode != null && l.countryCode.isEmpty
+    : l.countryCode != null && l.countryCode!.isEmpty
         ? l.languageCode
         : l.toString();

@@ -14,8 +14,8 @@ class PlayerPanel extends StatelessWidget {
   //the size of player panel
   final Size size;
 
-  PlayerPanel({Key key, @required double width})
-      : assert(width != null && width != 0),
+  PlayerPanel({Key? key, required double width})
+      : assert(width != 0),
         size = Size(width, width * 2),
         super(key: key);
 
@@ -43,14 +43,14 @@ class _PlayerPad extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: GameState.of(context).data.map((list) {
+      children: GameState.of(context)!.data.map((list) {
         return Row(
           children: list.map((b) {
             return b == 1
-                ? const Brik.normal()
+                ? Brik.normal()
                 : b == 2
-                    ? const Brik.highlight()
-                    : const Brik.empty();
+                    ? Brik.highlight()
+                    : Brik.empty();
           }).toList(),
         );
       }).toList(),
@@ -61,7 +61,7 @@ class _PlayerPad extends StatelessWidget {
 class _GameUninitialized extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (GameState.of(context).states == GameStates.none) {
+    if (GameState.of(context)!.states == GameStates.none) {
       return Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,

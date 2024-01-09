@@ -15,33 +15,23 @@ class StatusPanel extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: <Widget>[
-          Text(S.of(context).highscore,
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+          Text(S.of(context)!.highscore, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
           SizedBox(height: 4),
-          Number(number: GameState.of(context).highscore),
+          Number(number: GameState.of(context)!.highscore),
           SizedBox(height: 4),
-          Text(S.of(context).points,
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+          Text(S.of(context)!.points, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
           SizedBox(height: 4),
-          Number(number: GameState.of(context).points),
+          Number(number: GameState.of(context)!.points),
           SizedBox(height: 10),
-          Text(S.of(context).cleans,
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+          Text(S.of(context)!.cleans, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
           SizedBox(height: 4),
-          Number(number: GameState.of(context).cleared),
+          Number(number: GameState.of(context)!.cleared),
           SizedBox(height: 10),
-          Text(S.of(context).level,
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+          Text(S.of(context)!.level, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
           SizedBox(height: 4),
-          Number(number: GameState.of(context).level),
+          Number(number: GameState.of(context)!.level),
           SizedBox(height: 10),
-          Text(S.of(context).next,
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+          Text(S.of(context)!.next, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
           SizedBox(height: 4),
           _NextBlock(),
           Spacer(),
@@ -56,8 +46,8 @@ class _NextBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<List<int>> data = [List.filled(4, 0), List.filled(4, 0)];
-    final next = BLOCK_SHAPES[GameState.of(context).next.type];
-    for (int i = 0; i < next.length; i++) {
+    final next = BLOCK_SHAPES[GameState.of(context)!.next.type];
+    for (int i = 0; i < next!.length; i++) {
       for (int j = 0; j < next[i].length; j++) {
         data[i][j] = next[i][j];
       }
@@ -67,7 +57,7 @@ class _NextBlock extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: list.map((b) {
-            return b == 1 ? const Brik.normal() : const Brik.empty();
+            return b == 1 ? Brik.normal() : Brik.empty();
           }).toList(),
         );
       }).toList(),
@@ -83,13 +73,10 @@ class _GameStatus extends StatefulWidget {
 }
 
 class _GameStatusState extends State<_GameStatus> {
-  Timer _timer;
-
+  Timer? _timer;
   bool _colonEnable = true;
-
-  int _minute;
-
-  int _hour;
+  int? minute;
+  int? hour;
 
   @override
   void initState() {
@@ -98,8 +85,8 @@ class _GameStatusState extends State<_GameStatus> {
       final now = DateTime.now();
       setState(() {
         _colonEnable = !_colonEnable;
-        _minute = now.minute;
-        _hour = now.hour;
+        minute = now.minute;
+        hour = now.hour;
       });
     });
   }
@@ -115,9 +102,9 @@ class _GameStatusState extends State<_GameStatus> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
-        IconSound(enable: GameState.of(context).muted),
+        IconSound(enable: GameState.of(context)!.muted),
         SizedBox(width: 2),
-        IconPause(enable: GameState.of(context).states == GameStates.paused),
+        IconPause(enable: GameState.of(context)!.states == GameStates.paused),
         //  Spacer(),
         //  Number(number: _hour, length: 2, padWithZero: true),
         //  IconColon(enable: _colonEnable),

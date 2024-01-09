@@ -5,40 +5,31 @@ import 'package:flutter/services.dart';
 import 'package:soundpool/soundpool.dart';
 
 class Sound extends StatefulWidget {
-  final Widget child;
+  final Widget? child;
 
-  const Sound({Key key, this.child}) : super(key: key);
+  const Sound({Key? key, this.child}) : super(key: key);
 
   @override
   SoundState createState() => SoundState();
 
-  static SoundState of(BuildContext context) {
+  static SoundState? of(BuildContext context) {
     final state = context.findAncestorStateOfType<SoundState>();
     assert(state != null, 'can not find Sound widget');
     return state;
   }
 }
 
-const _SOUNDS = [
-  'clean.mp3',
-  'drop.mp3',
-  'explosion.mp3',
-  'move.mp3',
-  'rotate.mp3',
-  'start.mp3'
-];
+const _SOUNDS = ['clean.mp3', 'drop.mp3', 'explosion.mp3', 'move.mp3', 'rotate.mp3', 'start.mp3'];
 
 class SoundState extends State<Sound> {
-  Soundpool _pool;
-
-  Map<String, int> _soundIds;
-
+  Soundpool? _pool;
+  Map<String, int>? _soundIds;
   bool mute = false;
 
   void _play(String name) {
-    final soundId = _soundIds[name];
+    final soundId = _soundIds![name];
     if (soundId != null && !mute) {
-      _pool.play(soundId);
+      _pool!.play(soundId);
     }
   }
 
@@ -51,7 +42,7 @@ class SoundState extends State<Sound> {
     for (var value in _SOUNDS) {
       scheduleMicrotask(() async {
         final data = await rootBundle.load('assets/audios/$value');
-        _soundIds[value] = await _pool.load(data);
+        _soundIds![value] = await _pool!.load(data);
       });
     }
   }
@@ -59,12 +50,12 @@ class SoundState extends State<Sound> {
   @override
   void dispose() {
     super.dispose();
-    _pool.dispose();
+    _pool!.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.child;
+    return widget.child!;
   }
 
   void start() {

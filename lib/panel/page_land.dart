@@ -7,7 +7,7 @@ class PageLand extends StatefulWidget {
 
 class _PageLandState extends State<PageLand> {
   bool _isAdLoaded = false;
-  BannerAd banner;
+  BannerAd? banner;
 
   @override
   void initState() {
@@ -40,7 +40,7 @@ class _PageLandState extends State<PageLand> {
       ),
     );
 
-    banner.load().whenComplete(() => {
+    banner!.load().whenComplete(() => {
           if (this.mounted)
             {
               setState(() {
@@ -90,9 +90,9 @@ class _PageLandState extends State<PageLand> {
                     (_isAdLoaded)
                         ? Container(
                             alignment: Alignment.topCenter,
-                            child: AdWidget(ad: banner),
-                            width: banner.size.width.toDouble(),
-                            height: banner.size.height.toDouble(),
+                            child: AdWidget(ad: banner!),
+                            width: banner!.size.width.toDouble(),
+                            height: banner!.size.height.toDouble(),
                           )
                         : Spacer(),
                     Row(

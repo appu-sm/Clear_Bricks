@@ -9,8 +9,8 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 part 'page_land.dart';
 
 class PagePortrait extends StatefulWidget {
-  PagePortrait({Key key, this.title}) : super(key: key);
-  final String title;
+  PagePortrait({Key? key, this.title}) : super(key: key);
+  final String? title;
 
   @override
   _PagePortraitState createState() => _PagePortraitState();
@@ -18,7 +18,7 @@ class PagePortrait extends StatefulWidget {
 
 class _PagePortraitState extends State<PagePortrait> {
   bool _isAdLoaded = false;
-  BannerAd banner;
+  BannerAd? banner;
 //  InterstitialAd _interstitialAd;
   var myInterstitial;
 
@@ -66,7 +66,7 @@ class _PagePortraitState extends State<PagePortrait> {
         },
       ),
     );
-    banner.load().whenComplete(() => {
+    banner!.load().whenComplete(() => {
           if (this.mounted)
             {
               setState(() {
@@ -98,9 +98,9 @@ class _PagePortraitState extends State<PagePortrait> {
               (_isAdLoaded)
                   ? Container(
                       alignment: Alignment.topCenter,
-                      child: AdWidget(ad: banner),
-                      width: banner.size.width.toDouble(),
-                      height: banner.size.height.toDouble(),
+                      child: AdWidget(ad: banner!),
+                      width: banner!.size.width.toDouble(),
+                      height: banner!.size.height.toDouble(),
                     )
                   : Spacer(),
               Spacer(),
@@ -118,25 +118,17 @@ class _PagePortraitState extends State<PagePortrait> {
 class _ScreenDecoration extends StatelessWidget {
   final Widget child;
 
-  const _ScreenDecoration({Key key, @required this.child}) : super(key: key);
+  const _ScreenDecoration({Key? key, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(
-              color: Theme.of(context).colorScheme.secondary,
-              width: SCREEN_BORDER_WIDTH),
-          left: BorderSide(
-              color: Theme.of(context).colorScheme.secondary,
-              width: SCREEN_BORDER_WIDTH),
-          right: BorderSide(
-              color: Theme.of(context).colorScheme.secondary,
-              width: SCREEN_BORDER_WIDTH),
-          bottom: BorderSide(
-              color: Theme.of(context).colorScheme.secondary,
-              width: SCREEN_BORDER_WIDTH),
+          top: BorderSide(color: Theme.of(context).colorScheme.secondary, width: SCREEN_BORDER_WIDTH),
+          left: BorderSide(color: Theme.of(context).colorScheme.secondary, width: SCREEN_BORDER_WIDTH),
+          right: BorderSide(color: Theme.of(context).colorScheme.secondary, width: SCREEN_BORDER_WIDTH),
+          bottom: BorderSide(color: Theme.of(context).colorScheme.secondary, width: SCREEN_BORDER_WIDTH),
         ),
       ),
       child: Container(

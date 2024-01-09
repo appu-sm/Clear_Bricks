@@ -1,8 +1,6 @@
 import 'dart:async';
 import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
-
 import 'material.dart';
 
 const _DIGITAL_ROW_SIZE = Size(14, 24);
@@ -16,16 +14,11 @@ class Number extends StatelessWidget {
 
   final bool padWithZero;
 
-  Number(
-      {Key key,
-      this.length = 5,
-      @required this.number,
-      this.padWithZero = false})
-      : super(key: key);
+  Number({Key? key, this.length = 5, required this.number, this.padWithZero = false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    String digitalStr = number?.toString() ?? "";
+    String digitalStr = number.toString();
     if (digitalStr.length > length) {
       digitalStr = digitalStr.substring(digitalStr.length - length);
     }
@@ -44,7 +37,7 @@ class Number extends StatelessWidget {
 class IconDragon extends StatefulWidget {
   final bool animate;
 
-  const IconDragon({Key key, this.animate = false}) : super(key: key);
+  const IconDragon({Key? key, this.animate = false}) : super(key: key);
 
   @override
   _IconDragonState createState() {
@@ -53,7 +46,7 @@ class IconDragon extends StatefulWidget {
 }
 
 class _IconDragonState extends State<IconDragon> {
-  Timer _timer;
+  Timer? _timer;
 
   @override
   void didUpdateWidget(IconDragon oldWidget) {
@@ -118,8 +111,7 @@ class IconPause extends StatelessWidget {
   final bool enable;
   final Size size;
 
-  const IconPause({Key key, this.enable = true, this.size = const Size(18, 16)})
-      : super(key: key);
+  const IconPause({Key? key, this.enable = true, this.size = const Size(18, 16)}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -135,8 +127,7 @@ class IconSound extends StatelessWidget {
   final bool enable;
   final Size size;
 
-  const IconSound({Key key, this.enable = true, this.size = const Size(18, 16)})
-      : super(key: key);
+  const IconSound({Key? key, this.enable = true, this.size = const Size(18, 16)}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -153,8 +144,7 @@ class IconColon extends StatelessWidget {
 
   final Size size;
 
-  const IconColon({Key key, this.enable = true, this.size = const Size(10, 17)})
-      : super(key: key);
+  const IconColon({Key? key, this.enable = true, this.size = const Size(10, 17)}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -170,11 +160,11 @@ class IconColon extends StatelessWidget {
 class Digital extends StatelessWidget {
   ///number 0 - 9
   ///or null indicate it is invalid
-  final int digital;
+  final int? digital;
 
   final Size size;
 
-  Digital(this.digital, {Key key, this.size = const Size(10, 17)})
+  Digital(this.digital, {Key? key, this.size = const Size(10, 17)})
       : assert(digital == null || (digital <= 9 && digital >= 0)),
         super(key: key);
 
@@ -202,18 +192,13 @@ class _Material extends StatelessWidget {
 
   final Offset srcOffset;
 
-  const _Material(
-      {Key key,
-      @required this.size,
-      @required this.srcSize,
-      @required this.srcOffset})
+  const _Material({Key? key, required this.size, required this.srcSize, required this.srcOffset})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      foregroundPainter: _MaterialPainter(
-          srcOffset, srcSize, GameMaterial.getMaterial(context)),
+      foregroundPainter: _MaterialPainter(srcOffset, srcSize, GameMaterial.getMaterial(context)),
       child: SizedBox.fromSize(
         size: size,
       ),
@@ -236,11 +221,9 @@ class _MaterialPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final src =
-        Rect.fromLTWH(offset.dx, offset.dy, this.size.width, this.size.height);
+    final src = Rect.fromLTWH(offset.dx, offset.dy, this.size.width, this.size.height);
     canvas.scale(size.width / this.size.width, size.height / this.size.height);
-    canvas.drawImageRect(material, src,
-        Rect.fromLTWH(0, 0, this.size.width, this.size.height), _paint);
+    canvas.drawImageRect(material, src, Rect.fromLTWH(0, 0, this.size.width, this.size.height), _paint);
   }
 
   @override

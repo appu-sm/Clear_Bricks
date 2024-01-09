@@ -105,8 +105,7 @@ class DirectionController extends StatelessWidget {
                   Transform.rotate(
                       angle: math.pi / 4.0,
                       child: _ButtonDirection(
-                          color:
-                              Theme.of(context).colorScheme.secondaryContainer,
+                          color: Theme.of(context).colorScheme.secondaryContainer,
                           enableLongPress: false,
                           size: _DIRECTION_BUTTON_SIZE,
                           onTap: () {
@@ -116,8 +115,7 @@ class DirectionController extends StatelessWidget {
                   Transform.rotate(
                       angle: math.pi / 1.34,
                       child: _ButtonDirection(
-                          color:
-                              Theme.of(context).colorScheme.secondaryContainer,
+                          color: Theme.of(context).colorScheme.secondaryContainer,
                           size: _DIRECTION_BUTTON_SIZE,
                           onTap: () {
                             Game.of(context).right();
@@ -131,8 +129,7 @@ class DirectionController extends StatelessWidget {
                   Transform.rotate(
                       angle: math.pi / 0.572,
                       child: _ButtonDirection(
-                          color:
-                              Theme.of(context).colorScheme.secondaryContainer,
+                          color: Theme.of(context).colorScheme.secondaryContainer,
                           size: _DIRECTION_BUTTON_SIZE,
                           onTap: () {
                             Game.of(context).left();
@@ -167,7 +164,7 @@ class SystemButtonGroup extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
         _Description(
-          text: S.of(context).sounds,
+          text: S.of(context)!.sounds,
           child: _Button(
               size: _SYSTEM_BUTTON_SIZE,
               color: _systemButtonColor,
@@ -177,9 +174,8 @@ class SystemButtonGroup extends StatelessWidget {
               }),
         ),
         _Description(
-          text: (GameState.of(context).states == GameStates.paused)
-              ? S.of(context).resume
-              : S.of(context).pause,
+          text:
+              (GameState.of(context)!.states == GameStates.paused) ? S.of(context)!.resume : S.of(context)!.pause,
           child: _Button(
               size: _SYSTEM_BUTTON_SIZE,
               color: _systemButtonColor,
@@ -189,7 +185,7 @@ class SystemButtonGroup extends StatelessWidget {
               }),
         ),
         _Description(
-          text: S.of(context).reset,
+          text: S.of(context)!.reset,
           child: _Button(
               size: _SYSTEM_BUTTON_SIZE,
               enableLongPress: false,
@@ -238,22 +234,14 @@ class LeftController extends StatelessWidget {
 
 class _Button extends StatefulWidget {
   final Size size;
-  final Widget icon;
-
   final VoidCallback onTap;
 
   ///the color of button
   final Color color;
-
   final bool enableLongPress;
 
   const _Button(
-      {Key key,
-      @required this.size,
-      @required this.onTap,
-      this.icon,
-      this.color = Colors.blue,
-      this.enableLongPress = true})
+      {Key? key, required this.size, required this.onTap, this.color = Colors.blue, this.enableLongPress = true})
       : super(key: key);
 
   @override
@@ -265,27 +253,23 @@ class _Button extends StatefulWidget {
 ///show a hint text for child widget
 class _Description extends StatelessWidget {
   final String text;
-
   final Widget child;
-
-  final AxisDirection direction;
+  final AxisDirection? direction;
 
   const _Description({
-    Key key,
-    this.text,
+    Key? key,
+    required this.text,
     this.direction = AxisDirection.down,
-    this.child,
+    required this.child,
   })  : assert(direction != null),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Widget widget;
-    switch (direction) {
+    switch (direction!) {
       case AxisDirection.right:
-        widget = Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[child, SizedBox(width: 8), Text(text)]);
+        widget = Row(mainAxisSize: MainAxisSize.min, children: <Widget>[child, SizedBox(width: 8), Text(text)]);
         break;
       case AxisDirection.left:
         widget = Row(
@@ -314,11 +298,9 @@ class _Description extends StatelessWidget {
 }
 
 class _ButtonState extends State<_Button> {
-  Timer _timer;
-
+  Timer? _timer;
   bool _tapEnded = false;
-
-  Color _color;
+  Color? _color;
 
   @override
   void didUpdateWidget(_Button oldWidget) {
@@ -391,22 +373,14 @@ class _ButtonState extends State<_Button> {
 
 class _ButtonDirection extends StatefulWidget {
   final Size size;
-  final Widget icon;
-
   final VoidCallback onTap;
 
   ///the color of button
   final Color color;
-
   final bool enableLongPress;
 
   const _ButtonDirection(
-      {Key key,
-      @required this.size,
-      @required this.onTap,
-      this.icon,
-      this.color = Colors.blue,
-      this.enableLongPress = true})
+      {Key? key, required this.size, required this.onTap, this.color = Colors.blue, this.enableLongPress = true})
       : super(key: key);
 
   @override
@@ -416,11 +390,9 @@ class _ButtonDirection extends StatefulWidget {
 }
 
 class _ButtonDirectionState extends State<_ButtonDirection> {
-  Timer _timer;
-
+  Timer? _timer;
   bool _tapEnded = false;
-
-  Color _color;
+  Color? _color;
 
   @override
   void didUpdateWidget(_ButtonDirection oldWidget) {
@@ -439,9 +411,7 @@ class _ButtonDirectionState extends State<_ButtonDirection> {
     return Material(
       color: _color,
       elevation: 5,
-      shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.horizontal(left: Radius.elliptical(40, 50))),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.horizontal(left: Radius.elliptical(40, 50))),
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTapDown: (_) async {

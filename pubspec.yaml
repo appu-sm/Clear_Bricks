@@ -4,20 +4,19 @@ description: Old style brick game.
 version: 1.2.0+4
 
 environment:
-  sdk: ">=2.2.2 <3.0.0"
+  sdk: ">=3.2.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  overlay_support: ^1.2.1
+  overlay_support: ^2.1.0
   soundpool: ^2.3.0
-  google_mobile_ads: ^1.2.0
+  google_mobile_ads: ^4.0.0
   connectivity: ^3.0.6
-  shared_preferences: ^2.0.13
-  dynamic_color: ^0.1.0
-  dynamic_colorscheme: ^1.0.1
+  shared_preferences: ^2.2.2
+  dynamic_color: ^1.6.9
 
 dev_dependencies:
   flutter_test:
