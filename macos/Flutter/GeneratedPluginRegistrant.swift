@@ -5,7 +5,7 @@
 import FlutterMacOS
 import Foundation
 
-import connectivity_macos
+import connectivity_plus
 import dynamic_color
 import shared_preferences_foundation
 import soundpool_macos

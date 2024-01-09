@@ -1,7 +1,7 @@
 name: clear_bricks
 description: Old style brick game.
 
-version: 1.2.0+4
+version: 2.0.0+6
 
 environment:
   sdk: ">=3.2.0 <4.0.0"
@@ -12,9 +12,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   overlay_support: ^2.1.0
-  soundpool: ^2.3.0
+  soundpool: ^2.4.1
   google_mobile_ads: ^4.0.0
-  connectivity: ^3.0.6
+  connectivity_plus: ^5.0.2
   shared_preferences: ^2.2.2
   dynamic_color: ^1.6.9
 
